@@ -1,0 +1,2 @@
+class SalonInfo < ApplicationRecord
+end
