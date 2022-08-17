@@ -1,0 +1,9 @@
+<tr>
+  <td><%= appointment.salon_info.company_name %></td>
+  <td><%= appointment.salon_service.service_type %></td>
+  <td><%= appointment.salon_service.charges %></td>
+  <td><%= appointment.salon_service.duration.strftime("%H:%M") %></td>
+  <td><%= appointment.user_name %></td>
+  <td><%= appointment.mobile %></td>
+  <td><%= appointment.start_time.strftime("%H:%M") %></td>
+</tr>

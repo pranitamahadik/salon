@@ -1,0 +1,15 @@
+<tr>
+
+  <td><%= salon_info.company_name %></td>
+  <td><%= salon_info.address %></td>
+  <td><%= salon_info.gstin %></td>
+  <td><%= salon_info.pan %></td>
+  <td><%= salon_info.open %></td>
+  <td><%= salon_info.closes %></td>
+  <td>
+    <%= link_to "Book Appointment", new_appointment_path, class: "btn btn-primary btn-sm" %>
+  </td>
+  <td>
+    <%= link_to "View Booked Appointments", appointments_path, class: "btn btn-primary btn-sm" %>
+  </td>
+</tr>

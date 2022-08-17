@@ -1,0 +1,22 @@
+<div class="form">
+  <div class="title">Forgot your password?</div>
+    <div class="sub-title"><u></u></div>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: f.object %>
+        <div class="subtitle">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: 'input'} %>
+        </div>
+         <div class="row">    
+          <div class="col-12">
+            <hr/>
+            <%= f.submit "Send me reset password instructions", class: "submit", style: "margin-left: 25%;" %> 
+          </div>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

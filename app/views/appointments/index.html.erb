@@ -1,0 +1,40 @@
+<div class="app-content" style="padding: calc(0.7rem + 4.45rem + 1.3rem) 2rem 0;">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow">
+  </div>
+  <div class="success-message"><%=flash_message%></div>
+
+  <div class="content-body">
+    <%=link_to( image_tag("back.png", style: "width: 3%;"), salon_infos_path, :class=>"work") %>
+    <div class="row" id="table-striped">
+      <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Appointment Info</h4>
+            </div>
+            <div class="card-body">
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Service Type</th>
+                    <th>Charges</th>
+                    <th>Duration</th>
+                    <th>User Name</th>
+                    <th>Mobile</th>
+                    <th>Start Time</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                  <tbody>
+                     <%= render @appointments %>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

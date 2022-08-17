@@ -1,0 +1,64 @@
+<div class="form">
+  <div class="title">Register your salon!</div>
+    <div class="sub-title"><u>Salon Info</u></div>
+      <%= simple_form_for @salon_info do |f| %>
+      <%= render 'salon_infos/shared/error_messages', resource: f.object %>
+        <div class="subtitle">
+          <%= f.input :company_name, input_html: { class: 'input' } %>
+
+          <%= f.input :gstin, input_html: { class: 'input' } %>
+
+          <%= f.input :pan, input_html: { class: 'input' } %>
+
+          <%= f.input :address, input_html: { class: 'input' } %>
+
+          <%= f.input :chair_count, input_html: { class: 'input' } %>
+
+          <%= f.input :day, input_html: { class: 'input' } %>
+
+          <%= f.label :open %><br>
+          <%= f.time_field :open, input_html: { class: 'input input-n' } %><br><br>
+
+          <%= f.label :closes %><br>
+          <%= f.time_field :closes, input_html: { class: 'input input-n' } %>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <div class="divider divider-left">
+              <div class="divider-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+                
+                <div class="sub-title"><u>Salon Service</u></div>
+              </div>
+            </div>
+            <div data-repeater-list="de_params">
+              <%= f.simple_fields_for :salon_services do |dep| %>
+                <div data-repeater-item>
+                  <%= render "salon_service_fields", f: dep %>
+                </div>
+              <% end %>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <%= link_to_add_fields 'Add Band'.html_safe, f, :salon_services, {css_class: "submit"} %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">    
+          <div class="col-12">
+            <hr/>
+            <%= f.submit "Save", class: "submit" %>
+            <%= link_to "Cancel".html_safe, salon_infos_path, class: "btn submit" %></p>    
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

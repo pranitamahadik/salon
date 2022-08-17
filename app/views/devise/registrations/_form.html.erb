@@ -1,0 +1,38 @@
+<div class="form">
+  <div class="title">Log in!</div>
+    <div class="sub-title"><u></u></div>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="subtitle">
+          <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name", class: 'input'  }%>
+          <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name", class: 'input'  }%>      
+          <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email", class: 'input'  }%>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password", class: 'input'  } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'input'  } %>
+          <%= f.input :role, as: :radio_buttons, collection: ['Salon Owner', 'Customer'] %>
+
+        </div>
+         <div class="row">    
+          <div class="col-12">
+            <hr/>
+            <%= f.submit "Sign up", class: "submit", style: "margin-left: 25%;" %> 
+          </div>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

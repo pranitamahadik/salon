@@ -1,0 +1,39 @@
+<style type="text/css">
+  .collection_check_boxes
+  {
+   margin-right: 10px;
+    margin-left: 5px;
+  }
+</style>
+<div class="nested-fields">
+  <div class="row d-flex align-items-end">
+    <%= f.hidden_field :_destroy %>
+    <div class="col-md-3 col-12">
+      <div class="form-group">
+        <%= f.input :service_type, as: :select, collection: GlobalConstants::SERVICE_TYPE %>
+      </div>
+    </div>
+    <div class="col-md-3 col-12">
+      <div class="form-group">
+        <%= f.input :charges %>
+      </div>
+    </div>
+    <div class="col-md-3 col-12">
+      <div class="form-group">
+        <%= f.input :duration %>
+      </div>
+    </div>
+
+    <div class="col-md-1 col-12">
+      <div class="form-group">&nbsp;
+      </div>
+    </div>
+    <div class="col-md-1 col-12">
+      <div class="form-group">
+        <button class="btn btn-outline-danger text-nowrap px-1 remove_fields" type="button">
+          x
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

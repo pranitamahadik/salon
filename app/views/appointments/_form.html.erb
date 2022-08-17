@@ -1,0 +1,95 @@
+<div class="form">
+  <div class="title">Book your appointment!</div>
+    <div class="sub-title"><u>Appointment Details</u></div>
+      <%= simple_form_for @appointment do |f| %>
+      <%= render 'appointments/shared/error_messages', resource: f.object %>
+  
+      <div class="col-md-2 col-12">
+        <div class="form-group">
+          <%= f.input :salon_info_id, as: :select, collection: fetch_salon_list, input_html:{class: "assigned_salon_#{f.object_id}", onchange: "salon_service_changed($(this).val(), #{f.object_id})"}, label: 'Salon' %>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-12">
+        <div class="form-group">
+          <%= f.input :salon_service_id, as: :select, input_html: {id: "salon_service_id_#{f.object_id}", class: "assigned_salon_service_#{f.object_id}", data: {"selected_salon_service_id_#{f.object_id}": f.object.salon_service_id }}, label: 'Salon Services' %>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-12">
+        <div class="form-group">
+          <%= f.input :user_name %>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-12">
+        <div class="form-group">
+          <%= f.input :mobile %>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-12">
+        <div class="form-group">
+          <%= f.input :gender, as: :select, collection: GlobalConstants::GENDER %>
+        </div>
+      </div>
+
+      <div class="col-md-2 col-12">
+        <div class="form-group">
+          <%= f.input :start_time, as: :select, input_html: {id: "start_time_#{f.object_id}", class: "assigned_start_time_#{f.object_id}", data: {"selected_start_time_#{f.object_id}": f.object.start_time }}, label: 'Time Slot' %>
+        </div>
+      </div>
+
+        
+        <div class="row">    
+          <div class="col-12">
+            <hr/>
+            <%= f.submit "Save", class: "submit" %>
+            <%= link_to "Cancel".html_safe, salon_infos_path, class: "btn submit" %></p>    
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  
+  
+function salon_service_changed(salon_info, id) {
+  console.log("salon_info"+salon_info);
+  console.log("id"+id);
+    if (salon_info){
+        $.ajax({
+            url: "/get_salon_services.json",
+            contentType: "application/json",
+            dataType: "json",
+            data: { salon_info: salon_info},
+            type: 'get',
+            success: function(data){
+              var salon_services_list = data['salon_services_list']
+              var time_slot_list = data['time_slot_list']
+              $(".assigned_salon_service_"+id).empty();
+              $(".assigned_start_time_"+id).empty();
+              salon_services_list.forEach(function(rule){
+                $(".assigned_salon_service_"+id).append(new Option(rule[1], rule[0]));
+
+                var selected_salon_service = $("#selected_salon_service_id_"+id).data("selected-salon-service-id-"+id);               
+                document.getElementById("salon_service_id_"+id).value = selected_salon_service;
+                
+              }); 
+              time_slot_list.forEach(function(slot){
+                $(".assigned_start_time_"+id).append(new Option(slot));
+
+                var selected_time_slot = $("#selected_start_time_"+id).data("selected-start-time-"+id);               
+                document.getElementById("start_time_"+id).value = selected_time_slot;
+                
+              }); 
+            }
+        });
+    }
+    else{
+        $('.assigned_sub_category').val(0);
+    }
+}
+
+</script>
